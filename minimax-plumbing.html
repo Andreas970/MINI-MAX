@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MINI MAX — Plumbing · Heating · AC</title>
+<link rel="canonical" href="https://minimax-plumbing.com/">
+<meta property="og:title" content="MINI MAX — Plumbing · Heating · AC">
+<meta property="og:description" content="Plumbing, heating, and AC services in Poland and Germany.">
+<meta property="og:url" content="https://minimax-plumbing.com/">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0F2233;
+    --paper:#F5F7F6;
+    --steel:#2E6E8E;
+    --steel-dark:#1F4E68;
+    --copper:#C97A3D;
+    --mint:#4FA88F;
+    --slate:#4B5A62;
+    --line:#D8DEDC;
+    --card:#FFFFFF;
+    --radius:14px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.wordmark{font-family:'Space Grotesk',sans-serif;}
+  .mono{font-family:'IBM Plex Mono',monospace;}
+  a{color:inherit;text-decoration:none;}
+  .container{max-width:1120px;margin:0 auto;padding:0 24px;}
+
+  /* header */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(245,247,246,0.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .headbar{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:16px 24px;max-width:1120px;margin:0 auto;
+    gap:16px;flex-wrap:wrap;
+  }
+  .wordmark{font-size:22px;font-weight:700;letter-spacing:-0.02em;display:flex;align-items:center;gap:8px;}
+  .wordmark .dot{width:9px;height:9px;border-radius:50%;background:var(--copper);display:inline-block;}
+  .headright{display:flex;align-items:center;gap:18px;flex-wrap:wrap;}
+  .langswitch{display:flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;background:#fff;}
+  .langswitch button{
+    padding:7px 14px;border:none;background:none;font:inherit;font-family:'IBM Plex Mono',monospace;
+    font-size:12px;font-weight:500;letter-spacing:.04em;color:var(--slate);cursor:pointer;
+    transition:background .15s,color .15s;
+  }
+  .langswitch button.active{background:var(--ink);color:#fff;}
+  .callbtn{
+    display:inline-flex;align-items:center;gap:8px;background:var(--steel);color:#fff;
+    padding:9px 16px;border-radius:999px;font-size:14px;font-weight:600;
+    transition:background .15s;border:none;font-family:inherit;cursor:pointer;
+  }
+  .callbtn:hover{background:var(--steel-dark);}
+
+  .call-wrap{position:relative;}
+  .call-menu{
+    position:absolute;top:calc(100% + 8px);right:0;background:#fff;
+    border:1px solid var(--line);border-radius:12px;box-shadow:0 10px 30px rgba(15,34,51,.14);
+    padding:8px;min-width:220px;display:none;flex-direction:column;gap:4px;z-index:60;
+  }
+  .call-wrap.open .call-menu{display:flex;}
+  .call-menu a{
+    display:flex;align-items:center;justify-content:space-between;gap:12px;
+    padding:10px 12px;border-radius:8px;font-size:14px;color:var(--ink);transition:background .12s;
+  }
+  .call-menu a:hover{background:var(--paper);}
+  .call-menu a .cc{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.06em;color:var(--slate);text-transform:uppercase;}
+  .call-menu a .num{font-weight:600;}
+
+  /* hero */
+  .hero{padding:72px 0 64px;position:relative;overflow:hidden;isolation:isolate;}
+  .hero-bg{
+    position:absolute;inset:0;z-index:-1;
+    width:100%;height:100%;object-fit:cover;
+  }
+  .hero-scrim{
+    position:absolute;inset:0;z-index:-1;
+    background:linear-gradient(100deg, var(--paper) 32%, rgba(245,247,246,0.86) 52%, rgba(245,247,246,0.35) 78%);
+  }
+  .herogrid{display:grid;grid-template-columns:1.1fr 1fr;gap:56px;align-items:center;}
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:.08em;
+    color:var(--steel-dark);text-transform:uppercase;margin-bottom:18px;display:flex;align-items:center;gap:10px;
+  }
+  .eyebrow::before{content:"";width:22px;height:1px;background:var(--copper);display:inline-block;}
+  h1.headline{font-size:clamp(34px,5vw,54px);font-weight:700;letter-spacing:-0.02em;line-height:1.05;margin-bottom:20px;}
+  .sub{font-size:17px;color:var(--slate);max-width:46ch;margin-bottom:32px;}
+  .ctarow{display:flex;gap:14px;flex-wrap:wrap;}
+  .cta-primary{
+    background:var(--ink);color:#fff;padding:14px 24px;border-radius:10px;font-weight:600;font-size:15px;
+    display:inline-flex;align-items:center;gap:10px;transition:transform .15s, background .15s;
+  }
+  .cta-primary:hover{background:var(--copper);transform:translateY(-1px);}
+  .cta-secondary{
+    border:1px solid var(--line);color:var(--ink);padding:14px 24px;border-radius:10px;font-weight:600;font-size:15px;
+    display:inline-flex;align-items:center;gap:10px;background:#fff;transition:border-color .15s;
+  }
+  .cta-secondary:hover{border-color:var(--steel);}
+
+  /* schematic svg */
+  .schematic{width:100%;height:auto;}
+  .flowline{fill:none;stroke-width:3;stroke-linecap:round;}
+  .fl-water{stroke:var(--steel);}
+  .fl-heat{stroke:var(--copper);}
+  .fl-air{stroke:var(--mint);}
+  .flow-anim{stroke-dasharray:8 8;animation:dashmove 1.8s linear infinite;}
+  @keyframes dashmove{to{stroke-dashoffset:-32;}}
+  .hub{fill:var(--ink);}
+  .hub-label{font-family:'Space Grotesk',sans-serif;font-weight:700;fill:#fff;font-size:15px;}
+  @media (prefers-reduced-motion: reduce){
+    .flow-anim{animation:none;}
+  }
+
+  /* services */
+  .section{padding:72px 0;}
+  .section-head{max-width:640px;margin-bottom:44px;}
+  .section-head h2{font-size:clamp(26px,3.4vw,36px);font-weight:700;letter-spacing:-0.01em;margin-bottom:10px;}
+  .section-head p{color:var(--slate);font-size:16px;}
+  .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+  .service-card{
+    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:26px 24px;transition:border-color .15s, transform .15s;
+  }
+  .service-card:hover{border-color:var(--steel);transform:translateY(-2px);}
+  .service-icon{width:38px;height:38px;margin-bottom:16px;}
+  .service-card h3{font-size:17px;font-weight:600;margin-bottom:8px;letter-spacing:-0.01em;}
+  .service-card p{font-size:14.5px;color:var(--slate);}
+
+  /* why us */
+  .why{background:var(--ink);color:#fff;}
+  .why .section-head p{color:#B9C6CC;}
+  .why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;}
+  .why-item{border-top:2px solid var(--copper);padding-top:16px;}
+  .why-item .num{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--copper);letter-spacing:.06em;}
+  .why-item h3{font-size:19px;margin:8px 0 8px;font-weight:600;}
+  .why-item p{font-size:14.5px;color:#C8D2D6;}
+
+  /* contact */
+  .contact-wrap{
+    display:grid;grid-template-columns:1fr 1fr;gap:20px;
+  }
+  .contact-card{
+    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:28px;display:flex;flex-direction:column;gap:10px;
+  }
+  .contact-card .flag{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.08em;color:var(--slate);text-transform:uppercase;}
+  .contact-card .num{font-size:24px;font-weight:700;font-family:'Space Grotesk',sans-serif;letter-spacing:-0.01em;}
+  .contact-card .callbtn{align-self:flex-start;margin-top:4px;background:var(--steel);}
+  .contact-card:nth-child(2) .callbtn{background:var(--copper);}
+  .contact-card:nth-child(2) .callbtn:hover{background:#a9612b;}
+
+  footer{border-top:1px solid var(--line);padding:28px 0;}
+  .footrow{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
+  .footrow p{font-size:13px;color:var(--slate);}
+
+  @media (max-width:860px){
+    .hero-scrim{background:linear-gradient(180deg, var(--paper) 55%, rgba(245,247,246,0.9) 100%);}
+    .herogrid{grid-template-columns:1fr;}
+    .services-grid{grid-template-columns:1fr 1fr;}
+    .why-grid{grid-template-columns:1fr;}
+    .contact-wrap{grid-template-columns:1fr;}
+  }
+  @media (max-width:560px){
+    .services-grid{grid-template-columns:1fr;}
+    .headbar{padding:14px 18px;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="headbar">
+    <div class="wordmark"><span class="dot"></span>MINI MAX</div>
+    <div class="headright">
+      <div class="langswitch" id="langswitch">
+        <button data-lang="en" class="active">EN</button>
+        <button data-lang="de">DE</button>
+        <button data-lang="pl">PL</button>
+      </div>
+      <div class="call-wrap" id="callWrap">
+        <button class="callbtn" id="callToggle" aria-haspopup="true" aria-expanded="false">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <span data-i18n="cta">Call now</span>
+        </button>
+        <div class="call-menu">
+          <a href="tel:+48608330925"><span class="cc" data-i18n="pl-label">Poland</span><span class="num">+48 608 330 925</span></a>
+          <a href="tel:+4915781314224"><span class="cc" data-i18n="de-label">Germany</span><span class="num">+49 157 81314224</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <svg class="hero-bg" viewBox="0 0 1400 800" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <pattern id="halftone" width="22" height="22" patternUnits="userSpaceOnUse">
+        <circle cx="11" cy="11" r="2.4" fill="var(--ink)" opacity="0.07"/>
+      </pattern>
+      <radialGradient id="burst" cx="72%" cy="46%" r="60%">
+        <stop offset="0%" stop-color="#DDE7E4" stop-opacity="0.9"/>
+        <stop offset="100%" stop-color="#DDE7E4" stop-opacity="0"/>
+      </radialGradient>
+    </defs>
+    <rect width="1400" height="800" fill="url(#burst)"/>
+    <rect width="1400" height="800" fill="url(#halftone)"/>
+    <!-- speed lines -->
+    <g stroke="var(--ink)" stroke-opacity="0.10" stroke-width="3">
+      <line x1="1400" y1="60" x2="950" y2="180"/>
+      <line x1="1400" y1="140" x2="1000" y2="240"/>
+      <line x1="1400" y1="220" x2="1040" y2="300"/>
+      <line x1="1400" y1="620" x2="1000" y2="540"/>
+      <line x1="1400" y1="700" x2="1020" y2="600"/>
+      <line x1="1400" y1="760" x2="1060" y2="660"/>
+    </g>
+    <!-- pipe silhouette running behind character -->
+    <g fill="none" stroke="var(--steel)" stroke-opacity="0.16" stroke-width="26" stroke-linecap="round">
+      <path d="M1160 760 V520 H1020"/>
+    </g>
+    <!-- anime plumber character, right side -->
+    <g transform="translate(980,150)">
+      <!-- cap -->
+      <path d="M60 10 C20 10 -5 40 0 78 H150 C150 35 118 10 60 10 Z" fill="var(--copper)" stroke="var(--ink)" stroke-width="6"/>
+      <rect x="-8" y="70" width="70" height="16" rx="6" fill="var(--copper)" stroke="var(--ink)" stroke-width="6"/>
+      <!-- face -->
+      <circle cx="75" cy="120" r="58" fill="#F2C89B" stroke="var(--ink)" stroke-width="6"/>
+      <circle cx="55" cy="118" r="6" fill="var(--ink)"/>
+      <circle cx="95" cy="118" r="6" fill="var(--ink)"/>
+      <path d="M55 145 Q75 158 95 145" fill="none" stroke="var(--ink)" stroke-width="5" stroke-linecap="round"/>
+      <!-- moustache -->
+      <path d="M45 132 Q75 148 105 132" fill="none" stroke="var(--ink)" stroke-width="8" stroke-linecap="round"/>
+      <!-- body / overalls -->
+      <path d="M8 175 C8 165 25 155 75 155 C125 155 142 165 142 175 L155 340 C155 360 130 372 75 372 C20 372 -5 360 -5 340 Z"
+            fill="var(--steel)" stroke="var(--ink)" stroke-width="6"/>
+      <rect x="45" y="160" width="60" height="46" rx="8" fill="#F5F7F6" stroke="var(--ink)" stroke-width="5"/>
+      <!-- arm + wrench -->
+      <path d="M142 190 C175 200 195 185 205 150" fill="none" stroke="var(--steel)" stroke-width="26" stroke-linecap="round"/>
+      <path d="M142 190 C175 200 195 185 205 150" fill="none" stroke="var(--ink)" stroke-width="6" stroke-linecap="round" opacity="0.25"/>
+      <g transform="translate(196,110) rotate(28)">
+        <rect x="-8" y="0" width="16" height="70" rx="6" fill="#B8C1C6" stroke="var(--ink)" stroke-width="5"/>
+        <path d="M-22 -18 a22 22 0 0 1 44 0 v14 h-16 v-10 a6 6 0 0 0 -12 0 v10 h-16 z" fill="#B8C1C6" stroke="var(--ink)" stroke-width="5"/>
+      </g>
+      <!-- other arm -->
+      <path d="M8 190 C-20 205 -30 230 -22 260" fill="none" stroke="var(--steel)" stroke-width="26" stroke-linecap="round"/>
+    </g>
+  </svg>
+  <div class="hero-scrim"></div>
+  <div class="container herogrid">
+    <div>
+      <div class="eyebrow" data-i18n="eyebrow">Plumbing · Heating · AC</div>
+      <h1 class="headline" data-i18n="headline">Whatever the pipe, we fix it.</h1>
+      <p class="sub" data-i18n="sub">MINI MAX handles plumbing, heating and air conditioning for homes and businesses — plus modern bathroom installs done right the first time.</p>
+      <div class="ctarow">
+        <a class="cta-primary" href="tel:+48608330925">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          +48 608 330 925
+        </a>
+        <a class="cta-secondary" href="tel:+4915781314224">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          +49 157 81314224
+        </a>
+      </div>
+    </div>
+    <div>
+      <svg class="schematic" viewBox="0 0 560 420" xmlns="http://www.w3.org/2000/svg">
+        <path class="flowline fl-water flow-anim" d="M10 90 C 160 90, 200 90, 240 160 S 300 210, 340 210"/>
+        <path class="flowline fl-heat flow-anim" d="M10 210 C 140 210, 200 210, 240 210 S 300 210, 340 210"/>
+        <path class="flowline fl-air flow-anim" d="M10 330 C 160 330, 200 330, 240 260 S 300 210, 340 210"/>
+        <circle class="hub" cx="390" cy="210" r="46"/>
+        <text class="hub-label" x="390" y="215" text-anchor="middle">MM</text>
+        <circle cx="10" cy="90" r="5" fill="var(--steel)"/>
+        <circle cx="10" cy="210" r="5" fill="var(--copper)"/>
+        <circle cx="10" cy="330" r="5" fill="var(--mint)"/>
+        <text x="24" y="84" font-family="IBM Plex Mono, monospace" font-size="12" fill="#4B5A62">H2O</text>
+        <text x="24" y="204" font-family="IBM Plex Mono, monospace" font-size="12" fill="#4B5A62">HEAT</text>
+        <text x="24" y="324" font-family="IBM Plex Mono, monospace" font-size="12" fill="#4B5A62">AIR</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="services">
+  <div class="container">
+    <div class="section-head">
+      <h2 data-i18n="servicesTitle">What we do</h2>
+      <p data-i18n="servicesSub">Full-scope plumbing, heating and cooling — plus the fine finish work that makes a bathroom feel new.</p>
+    </div>
+    <div class="services-grid">
+
+      <div class="service-card">
+        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="var(--steel)" stroke-width="1.6"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+        <h3 data-i18n="s1t">General Plumbing</h3>
+        <p data-i18n="s1d">Leaks, pipes, drains, repairs — day or night.</p>
+      </div>
+
+      <div class="service-card">
+        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="var(--copper)" stroke-width="1.6"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 17c1.4 0 2-1.1 2-2 0-1.4-1.5-2-1.5-3.5 0-.83.33-1.67 1-2.5 0 1 .5 2 1.5 2.5 1 .5 2 1.67 2 3.5a4.5 4.5 0 0 1-9 0c0-1 .5-2.5 2-4.5 1.5-2 2-4 2-5"/></svg>
+        <h3 data-i18n="s2t">Heating Systems</h3>
+        <p data-i18n="s2d">Installation, maintenance and repair of heating systems.</p>
+      </div>
+
+      <div class="service-card">
+        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="var(--mint)" stroke-width="1.6"><path d="M12 2v20M2 12h20M4.9 4.9l14.2 14.2M19.1 4.9L4.9 19.1"/></svg>
+        <h3 data-i18n="s3t">Air Conditioning</h3>
+        <p data-i18n="s3d">AC installation and servicing for year-round comfort.</p>
+      </div>
+
+      <div class="service-card">
+        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="var(--steel)" stroke-width="1.6"><rect x="3" y="10" width="18" height="7" rx="1.5"/><path d="M3 17v2a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-2M7 10V7a2 2 0 0 1 2-2"/></svg>
+        <h3 data-i18n="s4t">Bathroom &amp; Sinks</h3>
+        <p data-i18n="s4d">Modern, clean sink installations that fit your space.</p>
+      </div>
+
+      <div class="service-card">
+        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="var(--copper)" stroke-width="1.6"><path d="M6 12h12M7 12c0 4.5 1 8 5 8s5-3.5 5-8M6 12V7a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v5"/></svg>
+        <h3 data-i18n="s5t">Toilet Installation &amp; Repair</h3>
+        <p data-i18n="s5d">Fast, reliable installs and fixes.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="section why">
+  <div class="container">
+    <div class="section-head">
+      <h2 data-i18n="whyTitle">Why MINI MAX</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-item">
+        <div class="num mono">01</div>
+        <h3 data-i18n="w1t">Two countries, one call</h3>
+        <p data-i18n="w1d">Direct lines in Poland and Germany — no hassle reaching us.</p>
+      </div>
+      <div class="why-item">
+        <div class="num mono">02</div>
+        <h3 data-i18n="w2t">Fast response</h3>
+        <p data-i18n="w2d">Plumbing problems don't wait, and neither do we.</p>
+      </div>
+      <div class="why-item">
+        <div class="num mono">03</div>
+        <h3 data-i18n="w3t">Modern, clean finish</h3>
+        <p data-i18n="w3d">Installations that look as good as they work.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="contact">
+  <div class="container">
+    <div class="section-head">
+      <h2 data-i18n="contactTitle">Get in touch</h2>
+      <p data-i18n="contactSub">Call the number closest to you.</p>
+    </div>
+    <div class="contact-wrap">
+      <div class="contact-card">
+        <div class="flag" data-i18n="pl-label">Poland</div>
+        <div class="num">+48 608 330 925</div>
+        <a class="callbtn" href="tel:+48608330925"><span data-i18n="cta">Call now</span></a>
+      </div>
+      <div class="contact-card">
+        <div class="flag" data-i18n="de-label">Germany</div>
+        <div class="num">+49 157 81314224</div>
+        <a class="callbtn" href="tel:+4915781314224"><span data-i18n="cta">Call now</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container footrow">
+    <div class="wordmark" style="font-size:16px;"><span class="dot"></span>MINI MAX</div>
+    <p data-i18n="footer">Plumbing · Heating · AC — Poland &amp; Germany</p>
+  </div>
+</footer>
+
+<script>
+const i18n = {
+  en: {
+    cta: "Call now",
+    eyebrow: "Plumbing · Heating · AC",
+    headline: "Whatever the pipe, we fix it.",
+    sub: "MINI MAX handles plumbing, heating and air conditioning for homes and businesses — plus modern bathroom installs done right the first time.",
+    servicesTitle: "What we do",
+    servicesSub: "Full-scope plumbing, heating and cooling — plus the fine finish work that makes a bathroom feel new.",
+    s1t: "General Plumbing", s1d: "Leaks, pipes, drains, repairs — day or night.",
+    s2t: "Heating Systems", s2d: "Installation, maintenance and repair of heating systems.",
+    s3t: "Air Conditioning", s3d: "AC installation and servicing for year-round comfort.",
+    s4t: "Bathroom &amp; Sinks", s4d: "Modern, clean sink installations that fit your space.",
+    s5t: "Toilet Installation &amp; Repair", s5d: "Fast, reliable installs and fixes.",
+    whyTitle: "Why MINI MAX",
+    w1t: "Two countries, one call", w1d: "Direct lines in Poland and Germany — no hassle reaching us.",
+    w2t: "Fast response", w2d: "Plumbing problems don't wait, and neither do we.",
+    w3t: "Modern, clean finish", w3d: "Installations that look as good as they work.",
+    contactTitle: "Get in touch", contactSub: "Call the number closest to you.",
+    "pl-label": "Poland", "de-label": "Germany",
+    footer: "Plumbing · Heating · AC — Poland &amp; Germany"
+  },
+  de: {
+    cta: "Jetzt anrufen",
+    eyebrow: "Sanitär · Heizung · Klima",
+    headline: "Egal welches Rohr, wir reparieren es.",
+    sub: "MINI MAX übernimmt Sanitär-, Heizungs- und Klimaanlagenarbeiten für Privat- und Geschäftskunden — dazu moderne Bad-Installationen, gleich beim ersten Mal richtig gemacht.",
+    servicesTitle: "Unsere Leistungen",
+    servicesSub: "Sanitär, Heizung und Klima aus einer Hand — dazu die sauberen Feinarbeiten, die ein Bad neu wirken lassen.",
+    s1t: "Sanitärinstallation", s1d: "Lecks, Rohre, Abflüsse, Reparaturen — Tag und Nacht.",
+    s2t: "Heizungssysteme", s2d: "Installation, Wartung und Reparatur von Heizungsanlagen.",
+    s3t: "Klimaanlagen", s3d: "Montage und Service für angenehmes Klima das ganze Jahr.",
+    s4t: "Bad &amp; Waschbecken", s4d: "Moderne, saubere Waschbecken-Installationen, passend zu Ihrem Raum.",
+    s5t: "Toiletteninstallation &amp; Reparatur", s5d: "Schnelle, zuverlässige Montage und Reparatur.",
+    whyTitle: "Warum MINI MAX",
+    w1t: "Zwei Länder, ein Anruf", w1d: "Direkte Nummern in Polen und Deutschland — unkompliziert erreichbar.",
+    w2t: "Schnelle Reaktionszeit", w2d: "Sanitärprobleme warten nicht, wir auch nicht.",
+    w3t: "Modern und sauber", w3d: "Installationen, die so gut aussehen wie sie funktionieren.",
+    contactTitle: "Kontakt aufnehmen", contactSub: "Rufen Sie die nächstgelegene Nummer an.",
+    "pl-label": "Polen", "de-label": "Deutschland",
+    footer: "Sanitär · Heizung · Klima — Polen &amp; Deutschland"
+  },
+  pl: {
+    cta: "Zadzwoń teraz",
+    eyebrow: "Hydraulika · Ogrzewanie · Klimatyzacja",
+    headline: "Każda rura, naprawimy ją.",
+    sub: "MINI MAX zajmuje się hydrauliką, ogrzewaniem i klimatyzacją dla domów i firm — a także nowoczesnym montażem łazienek, wykonanym dobrze za pierwszym razem.",
+    servicesTitle: "Co robimy",
+    servicesSub: "Pełny zakres usług hydraulicznych, grzewczych i klimatyzacyjnych — plus staranne wykończenia, dzięki którym łazienka wygląda jak nowa.",
+    s1t: "Hydraulika ogólna", s1d: "Wycieki, rury, odpływy, naprawy — w dzień i w nocy.",
+    s2t: "Systemy grzewcze", s2d: "Montaż, konserwacja i naprawa systemów grzewczych.",
+    s3t: "Klimatyzacja", s3d: "Montaż i serwis klimatyzacji przez cały rok.",
+    s4t: "Łazienki i umywalki", s4d: "Nowoczesny, czysty montaż umywalek dopasowany do przestrzeni.",
+    s5t: "Montaż i naprawa toalet", s5d: "Szybki, niezawodny montaż i naprawy.",
+    whyTitle: "Dlaczego MINI MAX",
+    w1t: "Dwa kraje, jeden telefon", w1d: "Bezpośrednie numery w Polsce i w Niemczech — bez utrudnień.",
+    w2t: "Szybki czas reakcji", w2d: "Awarie hydrauliczne nie czekają, my też nie.",
+    w3t: "Nowoczesne, czyste wykonanie", w3d: "Instalacje, które wyglądają tak dobrze, jak działają.",
+    contactTitle: "Skontaktuj się", contactSub: "Zadzwoń pod numer najbliższy Tobie.",
+    "pl-label": "Polska", "de-label": "Niemcy",
+    footer: "Hydraulika · Ogrzewanie · Klimatyzacja — Polska i Niemcy"
+  }
+};
+
+function setLang(lang){
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const key = el.getAttribute('data-i18n');
+    if(i18n[lang][key] !== undefined){ el.innerHTML = i18n[lang][key]; }
+  });
+  document.querySelectorAll('#langswitch button').forEach(b=>{
+    b.classList.toggle('active', b.getAttribute('data-lang')===lang);
+  });
+  document.documentElement.lang = lang;
+  localStorage && null; // no persistent storage used
+}
+
+document.querySelectorAll('#langswitch button').forEach(btn=>{
+  btn.addEventListener('click', ()=> setLang(btn.getAttribute('data-lang')));
+});
+
+const callWrap = document.getElementById('callWrap');
+const callToggle = document.getElementById('callToggle');
+callToggle.addEventListener('click', (e)=>{
+  e.stopPropagation();
+  const isOpen = callWrap.classList.toggle('open');
+  callToggle.setAttribute('aria-expanded', isOpen);
+});
+document.addEventListener('click', (e)=>{
+  if(!callWrap.contains(e.target)){
+    callWrap.classList.remove('open');
+    callToggle.setAttribute('aria-expanded', 'false');
+  }
+});
+
+setLang('en');
+</script>
+
+</body>
+</html>
