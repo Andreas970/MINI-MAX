@@ -333,10 +333,11 @@
         <p data-i18n="s1d">Leaks, pipes, drains, repairs — day or night.</p>
       </div>
 
-      <div class="service-card">
+      <div class="service-card" id="heatingCard">
         <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="var(--copper)" stroke-width="1.6"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 17c1.4 0 2-1.1 2-2 0-1.4-1.5-2-1.5-3.5 0-.83.33-1.67 1-2.5 0 1 .5 2 1.5 2.5 1 .5 2 1.67 2 3.5a4.5 4.5 0 0 1-9 0c0-1 .5-2.5 2-4.5 1.5-2 2-4 2-5"/></svg>
         <h3 data-i18n="s2t">Heating Systems</h3>
         <p data-i18n="s2d">Installation, maintenance and repair of heating systems.</p>
+        <div class="gallery-label"><span data-i18n="s2g">View photos</span> (4)</div>
       </div>
 
       <div class="service-card">
@@ -445,7 +446,7 @@ const i18n = {
     servicesTitle: "What we do",
     servicesSub: "Full-scope plumbing, heating and cooling — plus the fine finish work that makes a bathroom feel new.",
     s1t: "General Plumbing", s1d: "Leaks, pipes, drains, repairs — day or night.",
-    s2t: "Heating Systems", s2d: "Installation, maintenance and repair of heating systems.",
+    s2t: "Heating Systems", s2d: "Installation, maintenance and repair of heating systems.", s2g: "View photos",
     s3t: "Air Conditioning", s3d: "AC installation and servicing for year-round comfort.",
     s4t: "Bathroom &amp; Sinks", s4d: "Modern, clean sink installations that fit your space.", s4g: "View photos",
     s5t: "Toilet Installation &amp; Repair", s5d: "Fast, reliable installs and fixes.",
@@ -539,17 +540,43 @@ const galleryPhotos = [
   {src:"assets/WhatsApp%20Image%202026-07-25%20at%2019.53.34(2).jpeg", alt:"Insulated pipe runs behind moisture-resistant drywall"},
   {src:"assets/WhatsApp%20Image%202026-07-25%20at%2019.53.34.jpeg", alt:"Under-floor pipe and drain installation"}
 ];
+
+// Heating gallery photos (added from user attachments)
+const heatingPhotos = [
+  {src: "assets/WhatsApp%20Image%202026-08-11%20at%2015.55.32(1).jpeg", alt: "Heating system pipe runs and tank"},
+  {src: "assets/WhatsApp%20Image%202026-08-11%20at%2015.55.32(2).jpeg", alt: "Close-up of insulated pipework"},
+  {src: "assets/WhatsApp%20Image%202026-08-11%20at%2015.55.32(3).jpeg", alt: "Boiler and storage cylinder setup"},
+  {src: "assets/WhatsApp%20Image%202026-08-11%20at%2015.55.32.jpeg", alt: "Overview of heating room with pipework"}
+];
+
+let activeGallery = 'bathroom';
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = lightbox.querySelector('img');
 const lbCount = document.getElementById('lbCount');
 let lbIndex = 0;
 function showPhoto(i){
-  lbIndex = (i + galleryPhotos.length) % galleryPhotos.length;
-  lightboxImg.src = galleryPhotos[lbIndex].src;
-  lightboxImg.alt = galleryPhotos[lbIndex].alt;
-  lbCount.textContent = (lbIndex + 1) + ' / ' + galleryPhotos.length;
+  if(activeGallery === 'bathroom'){
+    lbIndex = (i + galleryPhotos.length) % galleryPhotos.length;
+    lightboxImg.src = galleryPhotos[lbIndex].src;
+    lightboxImg.alt = galleryPhotos[lbIndex].alt;
+    lbCount.textContent = (lbIndex + 1) + ' / ' + galleryPhotos.length;
+  } else if(activeGallery === 'heating'){
+    lbIndex = (i + heatingPhotos.length) % heatingPhotos.length;
+    lightboxImg.src = heatingPhotos[lbIndex].src;
+    lightboxImg.alt = heatingPhotos[lbIndex].alt;
+    lbCount.textContent = (lbIndex + 1) + ' / ' + heatingPhotos.length;
+  }
 }
+
 document.getElementById('bathroomCard').addEventListener('click', ()=>{
+  activeGallery = 'bathroom';
+  showPhoto(0);
+  lightbox.classList.add('open');
+});
+
+// open heating gallery
+document.getElementById('heatingCard').addEventListener('click', ()=>{
+  activeGallery = 'heating';
   showPhoto(0);
   lightbox.classList.add('open');
 });
